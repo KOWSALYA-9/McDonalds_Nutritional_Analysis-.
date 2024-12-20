@@ -1,0 +1,39 @@
+Kimport seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Example dataset for the heatmap
+data = {
+    "Nutrients": [
+        "Calcium (% Daily Value)", "Calories", "Carbohydrates", "Cholesterol", 
+        "Dietary Fiber", "Iron (% Daily Value)", "Protein", "Saturated Fat", 
+        "Sodium (% Daily Value)", "Sugars", "Total Fat", 
+        "Vitamin A (% Daily Value)", "Vitamin C (% Daily Value)"
+    ],
+    "Beef & Pork": [23.0, 494.0, 40.1, -87.3, 2.5, 23.3, 27.3, 10.5, 42.5, 8.8, 24.9, 6.9, 7.3],
+    "Beverages": [3.0, 113.7, 28.8, 152.9, 0.5, 3.3, 1.3, 0.1, 50.5, 27.9, 0.1, 6.9, 23.5],
+    "Breakfast": [16.2, 526.7, 49.8, 75.4, 3.3, 17.1, 19.9, 10.7, 52.3, 8.3, 27.7, 10.5, 8.9],
+    "Chicken & Fish": [15.4, 553.0, 49.1, 75.4, 4.9, 16.4, 29.1, 6.2, 53.6, 8.3, 27.7, 5.1, 4.1],
+    "Coffee & Tea": [28.3, 283.9, 44.5, 27.3, 3.5, 2.1, 8.8, 4.9, 20.5, 39.6, 10.5, 10.7, 28.3],
+    "Desserts": [11.4, 222.1, 34.9, 10.5, 3.2, 2.8, 4.0, 2.4, 7.8, 26.1, 4.1, 5.1, 4.1],
+    "Salads": [15.0, 270.0, 21.7, 51.7, 5.0, 12.5, 8.0, 3.8, 52.5, 6.8, 4.5, 146.7, 28.3],
+    "Shakes": [35.6, 531.4, 90.4, 37.5, 3.6, 10.2, 10.0, 7.3, 24.0, 77.9, 6.3, 18.8, 28.8],
+    "Snacks & Sides": [15.0, 245.6, 29.2, 18.5, 2.0, 8.5, 8.5, 3.0, 16.5, 4.1, 2.5, 8.9, 4.1],
+}
+
+# Convert to DataFrame
+df = pd.DataFrame(data)
+
+# Set 'Nutrients' as index
+df.set_index("Nutrients", inplace=True)
+
+# Plot the heatmap
+plt.figure(figsize=(12, 8))
+sns.heatmap(
+    df, annot=True, fmt=".1f", cmap="YlOrRd", cbar_kws={"label": "Nutritional Values"}
+)
+plt.title("Nutritional Characteristics Across Categories", fontsize=16)
+plt.xlabel("Categories")
+plt.ylabel("Nutrients")
+plt.tight_layout()
+plt.show()

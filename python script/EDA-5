@@ -1,0 +1,45 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+file_path = "path_to_your_file.csv"  # Replace with your dataset's file path
+data = pd.read_csv(file_path)
+
+# Bar Plot - Dietary Fiber per Category
+fiber_by_category = data.groupby('Category')['Dietary Fiber'].sum()
+plt.figure(figsize=(10, 6))
+fiber_by_category.sort_values().plot(kind='bar', color='teal')
+plt.title("Dietary Fiber per Category")
+plt.xlabel("Category")
+plt.ylabel("Dietary Fiber")
+plt.xticks(rotation=45)
+plt.show()
+
+# Bar Plot - Vitamins A & C per Category
+vitamins_by_category = data.groupby('Category')[['Vitamin A', 'Vitamin C']].median()
+vitamins_by_category.plot(kind='bar', figsize=(12, 6))
+plt.title("Median Vitamins A & C per Category")
+plt.xlabel("Category")
+plt.ylabel("Median Value")
+plt.xticks(rotation=45)
+plt.show()
+
+# Grouped Bar Plot - Calcium and Iron per Category
+calcium_iron = data.groupby('Category')[['Calcium', 'Iron']].median()
+calcium_iron.plot(kind='bar', figsize=(12, 6), color=['skyblue', 'orange'])
+plt.title("Median Calcium and Iron per Category")
+plt.xlabel("Category")
+plt.ylabel("Median Value")
+plt.xticks(rotation=45)
+plt.show()
+
+# Bar Plot - Sodium per Category
+sodium_by_category = data.groupby('Category')['Sodium'].median()
+plt.figure(figsize=(10, 6))
+sodium_by_category.sort_values().plot(kind='bar', color='purple')
+plt.title("Median Sodium per Category")
+plt.xlabel("Category")
+plt.ylabel("Median Sodium")
+plt.xticks(rotation=45)
+plt.show()

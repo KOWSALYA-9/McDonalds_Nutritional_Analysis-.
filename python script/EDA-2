@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+
+# Data
+categories = ['Coffee & Tea', 'Breakfast', 'Chicken & Fish', 'Smoothies & Shakes', 'Beef & Pork', 'Snacks & Sides', 'Desserts']
+percentages = [28.17, 23.10, 15.59, 15.54, 7.74, 3.34, 1.62]
+
+# Create a pie chart
+plt.figure(figsize=(8, 8))
+plt.pie(percentages, labels=categories, autopct='%1.2f%%', startangle=140)
+plt.title('Calories per Category')
+plt.show()

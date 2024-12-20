@@ -1,0 +1,51 @@
+Eimport matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# Data for highest calorie items
+highest_calories = {
+    "Item": [
+        "Chicken McNuggets (40 pcs)", "Big Breakfast with Hotcakes", 
+        "Big Breakfast with Hotcakes & Syrup", "Chicken McNuggets (20 pcs)", 
+        "McFlurry with M&M's", "Strawberry Shake (Large)", 
+        "Chocolate Shake (Large)", "Shamrock Shake (Large)"
+    ],
+    "Calories": [1880, 1150, 1090, 990, 930, 850, 820, 820]
+}
+
+# Data for lowest calorie items
+lowest_calories = {
+    "Item": [
+        "Diet Dr Pepper", "Diet Coke (Small)", "Coffee (Small)", 
+        "Dasani Water Bottle", "Diet Coke (Large)"
+    ],
+    "Calories": [0, 0, 5, 0, 0]
+}
+
+# Create dataframes
+df_high = pd.DataFrame(highest_calories)
+df_low = pd.DataFrame(lowest_calories)
+
+# Plot highest calorie items
+plt.figure(figsize=(10, 6))
+sns.barplot(
+    y="Item", x="Calories", data=df_high, palette="Reds_r"
+)
+plt.title("Highest Calorie Items on the Menu", fontsize=16)
+plt.xlabel("Calories")
+plt.ylabel("Item")
+plt.tight_layout()
+plt.show()
+
+# Plot lowest calorie items as a bubble chart
+plt.figure(figsize=(8, 6))
+bubble_sizes = [100 for _ in range(len(df_low["Item"]))]  # Bubble size
+colors = sns.color_palette("Purples", len(df_low["Item"]))
+
+plt.scatter(df_low["Item"], [0] * len(df_low["Item"]), s=bubble_sizes, c=colors, alpha=0.7)
+for i, txt in enumerate(df_low["Item"]):
+    plt.annotate(txt, (df_low["Item"][i], 0.2), ha="center", fontsize=10)
+
+plt.title("Lowest Calorie Items on the Menu", fontsize=16)
+plt.axis("off")
+plt.show()

@@ -1,0 +1,53 @@
+
+
+python
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# Data (replace with actual values from your chart)
+data = {
+    "Category": [
+        "Beef & Pork", "Beverages", "Breakfast", "Chicken & Fish",
+        "Coffee & Tea", "Desserts", "Salads", "Smoothies & Shakes", "Snacks & Sides"
+    ],
+    "Protein": [200, 50, 850, 750, 900, 50, 100, 400, 150],  # Replace with actual protein values
+    "Min Calories": [200, 10, 220, 230, 240, 50, 30, 150, 70],  # Replace with actual calorie values
+    "% of Total Calories": [11.82, 1.04, 24.05, 22.66, 24.28, 0.81, 3.43, 8.77, 3.14]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Scatter plot
+plt.figure(figsize=(12, 8))
+scatter = sns.scatterplot(
+    x="Protein",
+    y="Min Calories",
+    size="% of Total Calories",
+    hue="Category",
+    data=df,
+    palette="viridis",
+    sizes=(50, 500),
+    legend="full"
+)
+
+# Customize the plot
+plt.title("Optimizing Nutrition: High Protein, Low Calorie in McDonald's Menu", fontsize=14)
+plt.xlabel("Protein", fontsize=12)
+plt.ylabel("Min Calories", fontsize=12)
+
+# Add annotations for clarity
+for i in range(df.shape[0]):
+    plt.text(
+        df["Protein"][i],
+        df["Min Calories"][i],
+        df["Category"][i],
+        fontsize=10,
+        ha='right'
+    )
+
+plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', title="% of Total Calories")
+plt.tight_layout()
+plt.show()
+

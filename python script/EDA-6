@@ -1,0 +1,38 @@
+a CSV file. Here's the Python code:
+
+python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Sample data (replace with your actual dataset)
+data = {
+    "Category": [
+        "Beef & Pork", "Beverages", "Breakfast", "Chicken & Fish", 
+        "Desserts", "Salads", "Smoothies & Shakes", "Snacks & Sides"
+    ],
+    "Avg_Carbohydrates": [40.13, 1.33, 49.76, 49.07, 34.86, 21.67, 90.43, 29.15],
+    "Avg_Protein": [27.33, 0.09, 19.86, 27.69, 8.02, 19.83, 10.86, 8.38],
+    "Avg_Total_Fat": [24.87, 0.00, 28.81, 29.11, 6.04, 11.75, 14.13, 10.54]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Melt the DataFrame for easier plotting
+df_melted = df.melt(id_vars="Category", var_name="Nutrient", value_name="Value")
+
+# Plot the data
+plt.figure(figsize=(12, 6))
+sns.barplot(data=df_melted, x="Category", y="Value", hue="Nutrient")
+plt.title("Average Macronutrient Content per Category", fontsize=16)
+plt.xlabel("Category", fontsize=12)
+plt.ylabel("Average Content", fontsize=12)
+plt.xticks(rotation=45)
+plt.legend(title="Nutrient")
+plt.tight_layout()
+
+# Show the plot
+plt.show()
+
+

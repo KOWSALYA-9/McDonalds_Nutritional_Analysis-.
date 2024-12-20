@@ -1,0 +1,26 @@
+
+
+python
+import pandas as pd
+
+# Replace 'file_path' with the path to your Excel file
+file_path = 'your_excel_file.xlsx'
+
+# Load the Excel file
+df = pd.read_excel(file_path)
+
+# Display the first few rows of the DataFrame
+print(df.head())
+
+
+If you want to work with a CSV file instead, you can modify the code:
+
+python
+# Replace 'file_path' with the path to your CSV file
+file_path = 'your_csv_file.csv'
+
+# Load the CSV file
+df = pd.read_csv(file_path)
+
+# Display the first few rows of the DataFrame
+print(df.head())

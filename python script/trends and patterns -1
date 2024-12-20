@@ -1,0 +1,39 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Sample data (replace with your actual dataset)
+data = {
+    "Category": [
+        "Beef & Pork", "Beverages", "Breakfast", "Chicken & Fish",
+        "Desserts", "Smoothies & Shakes", "Snacks & Sides"
+    ],
+    "Min_Calories": [240, 10, 150, 200, 50, 240, 40],
+    "Avg_Protein": [30, 2, 20, 25, 8, 15, 10],
+    "Calories_Level": [240, 10, 150, 200, 50, 240, 40]  # Bubble size
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Plot the bubble chart
+plt.figure(figsize=(10, 6))
+bubble_chart = sns.scatterplot(
+    data=df,
+    x="Min_Calories",
+    y="Avg_Protein",
+    size="Calories_Level",
+    hue="Category",
+    sizes=(50, 500),  # Adjust bubble sizes
+    palette="Set2"
+)
+
+# Customize the chart
+plt.title("Protein vs Calorie Trends", fontsize=16)
+plt.xlabel("Min. Calories", fontsize=12)
+plt.ylabel("Avg. Protein", fontsize=12)
+plt.legend(title="Category", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+
+# Show the plot
+plt.show()

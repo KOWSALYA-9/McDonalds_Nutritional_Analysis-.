@@ -1,0 +1,78 @@
+# Importing necessary libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+file_path = "path_to_your_file.csv"  # Update this with your file path
+data = pd.read_csv(file_path)
+
+# Display basic information about the dataset
+print("Dataset Overview:")
+print(data.head())
+print("\nShape of the Dataset:", data.shape)
+print("\nData Types:")
+print(data.dtypes)
+
+# Check for missing values
+print("\nMissing Values:")
+print(data.isnull().sum())
+
+# Statistical Summary
+print("\nStatistical Summary:")
+print(data.describe())
+
+# Check for duplicate rows
+print("\nDuplicate Rows:", data.duplicated().sum())
+
+# Data Visualization
+
+# Correlation Matrix
+plt.figure(figsize=(10, 6))
+sns.heatmap(data.corr(), annot=True, cmap="coolwarm")
+plt.title("Correlation Matrix")
+plt.show()
+
+# Univariate Analysis
+for column in data.select_dtypes(include=['float64', 'int64']).columns:
+    plt.figure()
+    sns.histplot(data[column], kde=True, bins=30)
+    plt.title(f"Distribution of {column}")
+    plt.show()
+
+# Categorical Columns Countplot
+for column in data.select_dtypes(include=['object']).columns:
+    plt.figure()
+    sns.countplot(y=data[column])
+    plt.title(f"Count of Categories in {column}")
+    plt.show()
+
+# Pairplot for Numerical Features
+sns.pairplot(data.select_dtypes(include=['float64', 'int64']))
+plt.show()
+
+# Boxplots for Outliers
+for column in data.select_dtypes(include=['float64', 'int64']).columns:
+    plt.figure()
+    sns.boxplot(x=data[column])
+    plt.title(f"Boxplot of {column}")
+    plt.show()
+
+# Missing Values Heatmap
+plt.figure(figsize=(10, 6))
+sns.heatmap(data.isnull(), cbar=False, cmap='viridis')
+plt.title("Missing Values Heatmap")
+plt.show()
+
+# Data Cleaning (Optional)
+# Drop duplicates
+data = data.drop_duplicates()
+
+# Fill missing values (example: filling with median)
+# data = data.fillna(data.median())
+
+# Save cleaned data (Optional)
+# data.to_csv("cleaned_data.csv", index=False)
+
+print("\nEDA Completed.")

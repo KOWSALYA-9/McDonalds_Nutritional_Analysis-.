@@ -1,0 +1,46 @@
+Fimport matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Example data (replace with actual data)
+data = {
+    "Category": [
+        "Beef & Pork", "Beverages", "Breakfast", "Chicken & Fish", 
+        "Coffee & Tea", "Desserts", "Salads", "Smoothies & Shakes", "Snacks & Sides"
+    ],
+    "Calories": [7410, 1322, 28022, 15410, 5130, 8422, 1850, 11322, 4100],
+    "Protein": [240, 15, 320, 210, 20, 50, 15, 70, 25],
+    "Fat": [310, 20, 400, 270, 40, 70, 10, 110, 35],
+    "Carbohydrates": [620, 330, 2000, 950, 1000, 450, 60, 900, 200],
+    "Sugar": [200, 300, 500, 150, 800, 300, 30, 600, 100]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Define x-axis locations
+x = np.arange(len(df["Category"]))
+
+# Define bar width
+width = 0.15
+
+# Plot grouped bars
+fig, ax = plt.subplots(figsize=(12, 6))
+
+ax.bar(x - 2 * width, df["Calories"], width, label="Calories", color="goldenrod")
+ax.bar(x - width, df["Protein"], width, label="Protein", color="skyblue")
+ax.bar(x, df["Fat"], width, label="Fat", color="orange")
+ax.bar(x + width, df["Carbohydrates"], width, label="Carbohydrates", color="green")
+ax.bar(x + 2 * width, df["Sugar"], width, label="Sugar", color="pink")
+
+# Add labels, title, and legend
+ax.set_xlabel("Category", fontsize=12)
+ax.set_ylabel("Nutritional Value", fontsize=12)
+ax.set_title("Nutritional Characteristics: A Comparative Analysis by Category", fontsize=14)
+ax.set_xticks(x)
+ax.set_xticklabels(df["Category"], rotation=45, ha="right", fontsize=10)
+ax.legend()
+
+# Adjust layout
+plt.tight_layout()
+plt.show()

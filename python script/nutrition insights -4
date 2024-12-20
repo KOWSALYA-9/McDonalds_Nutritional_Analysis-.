@@ -1,0 +1,33 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sample data: Replace with your actual dataset
+data = {
+    "Category": ["Cat1", "Cat2", "Cat3", "Cat4", "Cat5"],
+    "Healthy": [2130, 3070, 2870, 0, 1620],
+    "Moderate": [2600, 6880, 1270, 0, 2083],
+    "Unhealthy": [2680, 12170, 4790, 22870, 14880]
+}
+
+df = pd.DataFrame(data)
+
+# Plotting
+plt.figure(figsize=(10, 6))
+bar_width = 0.5
+
+# Stacked bar plot
+bottom_healthy = df["Healthy"]
+bottom_moderate = df["Healthy"] + df["Moderate"]
+
+plt.bar(df["Category"], df["Healthy"], label="Healthy", color="green", width=bar_width)
+plt.bar(df["Category"], df["Moderate"], bottom=bottom_healthy, label="Moderate", color="orange", width=bar_width)
+plt.bar(df["Category"], df["Unhealthy"], bottom=bottom_moderate, label="Unhealthy", color="red", width=bar_width)
+
+# Labels and title
+plt.title("Calorie and Fat Levels by Menu and Health Type")
+plt.xlabel("Category")
+plt.ylabel("Levels")
+plt.legend(title="Health Type")
+
+# Display the chart
+plt.show()

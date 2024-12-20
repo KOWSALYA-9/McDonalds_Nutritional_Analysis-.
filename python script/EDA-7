@@ -1,0 +1,42 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Sample data (replace with your actual dataset)
+data = {
+    "Food Item": [
+        "Chicken McNuggets (40 piece)", "Big Breakfast (Large Biscuit)",
+        "Chicken McNuggets (20 piece)", "Big Breakfast with Hotcakes (Large Biscuit)",
+        "Big Breakfast with Hotcakes and Egg Whites (Large Biscuit)"
+    ],
+    "Calories": [2000, 1350, 890, 1550, 1200],
+    "Total Fat": [130, 75, 50, 80, 55]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Plot the data
+plt.figure(figsize=(10, 6))
+scatter = sns.scatterplot(
+    data=df,
+    x="Total Fat",
+    y="Calories",
+    size="Calories",  # Bubble size based on Calories
+    hue="Food Item",
+    legend=False,  # Disable legend for simplicity
+    palette="Set2"
+)
+
+# Annotate points
+for i, row in df.iterrows():
+    plt.text(row["Total Fat"] + 1, row["Calories"], row["Food Item"], fontsize=8)
+
+# Customize the plot
+plt.title("Correlation between Nutrients", fontsize=16)
+plt.xlabel("Total Fat (g)", fontsize=12)
+plt.ylabel("Calories", fontsize=12)
+plt.tight_layout()
+
+# Show the plot
+plt.show()

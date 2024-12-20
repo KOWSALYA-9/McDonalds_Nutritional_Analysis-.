@@ -1,0 +1,32 @@
+Wimport matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
+# Example Data (replace with actual data from the chart)
+data = {
+    "Item": [
+        "Blueberry Shake", "Chocolate Shake", "Mango Shake", "McFlurry Oreo",
+        "McFlurry Chocolate", "Shamrock Shake", "Strawberry Shake"
+    ],
+    "Calories": [220, 450, 320, 510, 750, 800, 300]  # Replace with actual calorie values
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Create bins of 100 calories
+df["Calorie Bin"] = (df["Calories"] // 100) * 100
+
+# Bar plot
+plt.figure(figsize=(14, 7))
+sns.barplot(x="Item", y="Calories", data=df, palette="Set3", edgecolor="black")
+
+# Add labels
+plt.title("Visualizing Calorie Bins for Menu Items", fontsize=16)
+plt.xlabel("Item", fontsize=12)
+plt.ylabel("Calories", fontsize=12)
+plt.xticks(rotation=45, ha="right")
+
+# Show plot
+plt.tight_layout()
+plt.show()

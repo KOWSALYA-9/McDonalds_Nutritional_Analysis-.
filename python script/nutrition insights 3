@@ -1,0 +1,34 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Sample data: Replace with your actual dataset
+data = {
+    "Item": ["A", "B", "C", "D", "E", "F"],
+    "Calories": [150, 300, 500, 800, 1200, 1600],
+    "Health": ["Healthy", "Moderate", "Moderate", "Unhealthy", "Unhealthy", "Unhealthy"]
+}
+
+df = pd.DataFrame(data)
+
+# Sort data by calories
+df = df.sort_values(by="Calories")
+
+# Create a bar plot
+plt.figure(figsize=(10, 6))
+colors = {"Healthy": "green", "Moderate": "orange", "Unhealthy": "red"}
+sns.barplot(
+    x="Item", 
+    y="Calories", 
+    data=df, 
+    hue="Health", 
+    dodge=False, 
+    palette=colors
+)
+
+# Add labels and title
+plt.title("Menu Health Insights: Ranking by Healthiness")
+plt.xlabel("Item")
+plt.ylabel("Avg Calories")
+plt.legend(title="Health")
+plt.show()

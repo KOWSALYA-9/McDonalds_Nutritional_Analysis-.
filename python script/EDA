@@ -1,0 +1,22 @@
+import matplotlib.pyplot as plt
+
+# Data for the  item chart
+categories = ["Coffee & Tea", "Breakfast", "Beverages", "Smoothies & Shakes", "Chicken & Fish", "Snacks & Sides", "Desserts", "Beef & Pork", "Salads"]
+counts = [95, 42, 27, 28, 27, 15, 10, 15, 8]
+colors = ["green", "orange", "blue", "pink", "cyan", "brown", "yellow", "purple", "lightgray"]
+
+# Create bubble chart
+plt.figure(figsize=(10, 6))
+plt.scatter(categories, [1]*len(categories), s=[x*100 for x in counts], c=colors, alpha=0.6, edgecolors="w", linewidth=2)
+
+# Add labels
+for i, count in enumerate(counts):
+    plt.text(i, 1, f"{categories[i]}\n{count}", ha="center", va="center", fontsize=10)
+
+# Customize chart
+plt.title("Number of Items in Each Category", fontsize=16)
+plt.axis("off")  # Hide axes for a cleaner look
+
+# Show plot
+plt.tight_layout()
+plt.show()
