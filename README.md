@@ -12,11 +12,13 @@ This project analyzes the nutritional content of McDonald's menu items, includin
 - **Calories Comparison:** Visualize the calorie counts of menu items.
 - **Nutritional Breakdown:** Charts showing fat, carbs, and protein.
 - **Healthy vs Unhealthy Items:** Identifying healthier alternatives.
+- **Displaying key charatersitics of each nutrients 
 
 ## Findings and Insights
 - **Top 5 Unhealthy Items:** Items like Big Mac and Double Cheeseburger are high in calories and fat.
 - **Trends:** High-calorie items tend to have high fat content and low protein.
 - **Healthier Alternatives:** Items like salads and fruit bags are healthier options.
+- 
 
 ## Recommendations
 1. Reduce calorie content of high-calorie items.
